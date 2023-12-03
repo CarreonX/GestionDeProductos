@@ -13,6 +13,7 @@ public class Venta {
     private String horaFecha;
     private float[] precios;
     private int[] numeroArticulos;
+    private String[] categorias;
     
     public Venta( Cliente cliente ){
         
@@ -43,7 +44,12 @@ public class Venta {
         precios = aPrecios;
     }
     
-    public void getNumeroProductos( int ... numeroProductos ){
+    public void setCategorias( String ... aCategorias ){
+        
+        categorias = aCategorias;
+    }
+    
+    public void setNumeroProductos( int ... numeroProductos ){
         
         numeroArticulos = numeroProductos;
     }
@@ -63,6 +69,7 @@ public class Venta {
         
         comprador.setComprasRealizadas( comprador.getComprasRealizadas() + 1 );
         ventaTotal = cuenta;
+        Almacen.venderUnProducto( numeroArticulos, categorias );
         return ventaTotal;
     }
     

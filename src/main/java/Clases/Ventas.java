@@ -25,17 +25,18 @@ public class Ventas {
         return ventas;
     }
     
-    public void ordenarVentas(List<Venta> ventas, int inicio, int fin) {
+    public void ordenarVentas( List<Venta> ventas, int inicio, int fin ) {
         
         if (inicio < fin) {
-            int indiceParticion = particion(ventas, inicio, fin);
+            
+            int indiceParticion = particion( ventas, inicio, fin );
 
-            ordenarVentas(ventas, inicio, indiceParticion - 1);
-            ordenarVentas(ventas, indiceParticion + 1, fin);
+            ordenarVentas( ventas, inicio, indiceParticion - 1 );
+            ordenarVentas( ventas, indiceParticion + 1, fin );
         }
     }
 
-    public int particion(List<Venta> ventas, int inicio, int fin) {
+    public int particion( List<Venta> ventas, int inicio, int fin ) {
         
         float pivote = ventas.get(fin).getVentaTotal();
         int i = inicio - 1;
@@ -47,21 +48,24 @@ public class Ventas {
             }
         }
 
-        intercambiar(ventas, i + 1, fin);
+        intercambiar( ventas, i + 1, fin );
 
         return i + 1;
     }
 
-    public void intercambiar(List<Venta> ventas, int indice1, int indice2) {
+    public void intercambiar( List<Venta> ventas, int indice1, int indice2 ) {
         
         Collections.swap(ventas, indice1, indice2);
     }
 
-    public void imprimirVentas(List<Venta> ventas) {
+    public String imprimirVentas() {
         
-        for (Venta venta : ventas) {
-            System.out.println(venta.getVentaTotal());
+        String salida = "";
+        for ( Venta venta : ventas ) {
+            
+            salida = String.format("%s%s\n", salida, venta.toString() );
         }
+        return salida;
     }
     
     public List<Float> obtenerVentasMayoresA5000( List< Venta > cantidades, int inicio, int fin) {

@@ -4,129 +4,78 @@ package Clases;
 
 public class Almacen {
     
-    private static int[] productos;
+    private static int[] productos = { 0, 0, 0, 0, 0 };
     private static boolean esVacio;
     private static boolean esLleno;
-    private static int limiteDeExistencias;
-    private static int contadorDeExistencias;
-
-    public Almacen() {
-        
-        limiteDeExistencias = 1000;
-        contadorDeExistencias = 0;
-        productos = new int[ 5 ];
-        
-        //Subindice 0 = categoria individual
-        //Subindice 1 = categoria doble
-        //Subindice 2 = categoria queen size
-        //Subindice 3 = categoria king size
-        //Subindice 4 = categoria presidential king size
-    }
-    
+    private static int limiteDeExistencias = 1000;
+    private static int contadorDeExistencias = 0;
     
     public static boolean esVacio() {
         
         int contador = 0;
-        for( int cantidad : productos ){
-            
-            if( cantidad == 0 ){
+        for (int cantidad : productos) {
+            if (cantidad == 0) {
                 contador++;
             }
         }
-        if( contador >= 5 ){
-            
-            return true;
-        }
-        else{
-            return false;
-        }
+        return contador >= 5;
     }
 
     public static boolean esLleno() {
         
         int contador = 0;
-        for( int cantidad : productos ){
-            
+        for (int cantidad : productos) {
             contador += cantidad;
         }
-        if( contador >= 5 ){
+        return contador >= 5;
+    }
+
+    public static void agregarUnProducto(Producto producto) {
+        
+        if ((contadorDeExistencias + producto.getCantidadDePiezas()) <= limiteDeExistencias) {
             
-            return true;
-        }
-        else{
-            return false;
+            actualizarCantidadProducto(producto.getCategoria(), producto.getCantidadDePiezas());
         }
     }
-    
-    public static void agregarUnProducto( Producto producto ){
+
+    public static void venderUnProducto(int [] cantidad, String [] categoria) {
         
-        if(  ( contadorDeExistencias + producto.getCantidadDePiezas() ) <= limiteDeExistencias ){
+        for( int c = 0; c < cantidad.length; c++ ){
             
-            switch( producto.getCategoria() ){
-                
-                case "individual":
-                    productos[ 0 ] += producto.getCantidadDePiezas();
-                    
-                break;
-                
-                case "doble":
-                    productos[ 1 ] += producto.getCantidadDePiezas();
-                    
-                break;
-                
-                case "queen size":
-                    productos[ 2 ] += producto.getCantidadDePiezas();
-                    
-                break;
-                
-                case "king size":
-                    productos[ 3 ] += producto.getCantidadDePiezas();
-                    
-                break;
-                
-                case "presidential king size":
-                    productos[ 4 ] += producto.getCantidadDePiezas();
-                    
-                break;
-            }
+            actualizarCantidadProducto(categoria[ c ], -cantidad[ c ]);
+            contadorDeExistencias -= cantidad[ c ];
         }
     }
-    
-    public static void venderUnProducto( int cantidad, String categoria ){
+
+    private static void actualizarCantidadProducto(String categoria, int cantidad) {
         
-        switch( categoria ){
-                
-                case "individual":
-                    productos[ 0 ] -= cantidad;
-                    
+        switch (categoria.toLowerCase()) {
+            
+            case "individual":
+                productos[0] += cantidad;
                 break;
                 
-                case "doble":
-                    productos[ 1 ] -= cantidad;
-                    
+            case "doble":
+                productos[1] += cantidad;
                 break;
                 
-                case "queen size":
-                    productos[ 2 ] -= cantidad;
-                    
+            case "queen size":
+                productos[2] += cantidad;
                 break;
                 
-                case "king size":
-                    productos[ 3 ] -= cantidad;
-                    
+            case "king size":
+                productos[3] += cantidad;
                 break;
                 
-                case "presidential king size":
-                    productos[ 4 ] -= cantidad;
-                    
+            case "presidential king size":
+                productos[4] += cantidad;
                 break;
         }
-        contadorDeExistencias -= cantidad;
     }
     
     public static String verAlmacen(){
         
-        return String.format("Cantidades en almacen\nIndividual: %d\nDoble: %d\nQueen Size: %d\nKing Size: %d\nPresidential king size: %d\n",
-                productos[ 0 ], productos[ 1 ], productos[ 2 ], productos[ 3 ], productos[ 4 ] );
+        return String.format("Cantidades en almacen\nAlmacen es vacio?: %s\nIndividual: %d\nDoble: %d\nQueen Size: %d\nKing Size: %d\nPresidential king size: %d\n",
+                esVacio() != false ? "No" : "Si", productos[ 0 ], productos[ 1 ], productos[ 2 ], productos[ 3 ], productos[ 4 ] );
     }
 }
