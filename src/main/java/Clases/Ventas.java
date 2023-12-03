@@ -40,10 +40,10 @@ public class Ventas {
     public void intercambiar(List< Venta > cantidades, int indice1, int indice2) {
         
         float temp = cantidades.get(indice1 ).getVentaTotal();
-        cantidades[indice1] = cantidades[indice2];
+        //cantidades[indice1] = cantidades[indice2];
         
-        cantidades.get(indice2).set( indice2 );
-        cantidades[indice2] = temp;
+        //cantidades.get(indice2).set( indice2 );
+        //cantidades[indice2] = temp;
     }
     
     public static List<Float> obtenerVentasMayoresA5000( List< Venta > cantidades, int inicio, int fin) {
