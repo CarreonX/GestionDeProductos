@@ -2,51 +2,69 @@
 package Clases;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
 public class Ventas {
     
-    ArrayList < Venta > ventas = new ArrayList<>();
+    ArrayList < Venta > ventas;
     
-    public  void ordenarVentas( List< Venta > cantidades, int inicio, int fin) {
+    public Ventas(){
+        
+        ventas = new ArrayList<>();
+    }
+    
+    public void agregarUnaVenta( Venta venta ){
+        
+        ventas.add( venta );
+    }
+    
+    public List< Venta > getVentas(){
+        
+        return ventas;
+    }
+    
+    public void ordenarVentas(List<Venta> ventas, int inicio, int fin) {
         
         if (inicio < fin) {
-            
-            int indiceParticion = particion(cantidades, inicio, fin);
+            int indiceParticion = particion(ventas, inicio, fin);
 
-            ordenarVentas(cantidades, inicio, indiceParticion - 1);
-            ordenarVentas(cantidades, indiceParticion + 1, fin);
+            ordenarVentas(ventas, inicio, indiceParticion - 1);
+            ordenarVentas(ventas, indiceParticion + 1, fin);
         }
     }
 
-    public int particion( List< Venta > cantidades, int inicio, int fin) {
+    public int particion(List<Venta> ventas, int inicio, int fin) {
         
-        float pivote = cantidades.get(fin).getVentaTotal();
+        float pivote = ventas.get(fin).getVentaTotal();
         int i = inicio - 1;
 
         for (int j = inicio; j < fin; j++) {
-            if (cantidades.get( j ).getVentaTotal() >= pivote) {
+            if (ventas.get(j).getVentaTotal() >= pivote) {
                 i++;
-                intercambiar(cantidades, i, j);
+                intercambiar(ventas, i, j);
             }
         }
 
-        intercambiar(cantidades, i + 1, fin);
+        intercambiar(ventas, i + 1, fin);
 
         return i + 1;
     }
 
-    public void intercambiar(List< Venta > cantidades, int indice1, int indice2) {
+    public void intercambiar(List<Venta> ventas, int indice1, int indice2) {
         
-        float temp = cantidades.get(indice1 ).getVentaTotal();
-        //cantidades[indice1] = cantidades[indice2];
+        Collections.swap(ventas, indice1, indice2);
+    }
+
+    public void imprimirVentas(List<Venta> ventas) {
         
-        //cantidades.get(indice2).set( indice2 );
-        //cantidades[indice2] = temp;
+        for (Venta venta : ventas) {
+            System.out.println(venta.getVentaTotal());
+        }
     }
     
-    public static List<Float> obtenerVentasMayoresA5000( List< Venta > cantidades, int inicio, int fin) {
+    public List<Float> obtenerVentasMayoresA5000( List< Venta > cantidades, int inicio, int fin) {
         
         List<Float> resultado = new ArrayList<>();
 

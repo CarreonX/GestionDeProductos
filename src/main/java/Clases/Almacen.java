@@ -123,4 +123,10 @@ public class Almacen {
         }
         contadorDeExistencias -= cantidad;
     }
+    
+    public String verAlmacen(){
+        
+        return String.format("Cantidades en almacen\nIndividual: %d\nDoble: %d\nQueen Size: %d\nKing Size: %d\nPresidential king size: %d\n",
+                productos[ 0 ], productos[ 1 ], productos[ 2 ], productos[ 3 ], productos[ 4 ] );
+    }
 }

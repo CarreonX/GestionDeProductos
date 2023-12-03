@@ -8,34 +8,25 @@ import java.util.List;
 public class Venta {
     
     Calendar fechaHora = Calendar.getInstance();
-    private int cantidadProductos;
     private float ventaTotal;
     private Cliente comprador;
     private String horaFecha;
     
-    public Venta( int cantidad, Cliente cliente ){
+    public Venta( Cliente cliente ){
         
-        setCantidadProductos( cantidad );
         setComprador( cliente );
         setHoraFecha();
     }
     
     public void setHoraFecha(){
         
-        horaFecha = String.format( "%tr, %1$TA, %1$TB %1$Td, %1$TY\n", fechaHora, fechaHora );
+        horaFecha = String.format( "%tr, %1$TA, %1$TB %1$Td, %1$TY", fechaHora, fechaHora );
     }
     
     public String getHoraFecha(){
         return horaFecha;
     }
     
-    public int getCantidadProductos() {
-        return cantidadProductos;
-    }
-
-    public void setCantidadProductos(int cantidadProductos) {
-        this.cantidadProductos = cantidadProductos;
-    }
 
     public Cliente getComprador() {
         return comprador;
@@ -57,13 +48,16 @@ public class Venta {
     
     public float getVentaTotal(){
         
+        float [] precios = setPrecios();
+        int [] numeroProductos = getNumeroProductos();
         float cuenta = 0f;
         for( int i = 0; i < setPrecios().length; i++ ){
             
-            cuenta += setPrecios()[ i ] * getNumeroProductos()[ i ];
+            cuenta += precios[ i ] * numeroProductos[ i ];
         }
         
         comprador.setComprasRealizadas( comprador.getComprasRealizadas() + 1 );
+        ventaTotal = cuenta;
         return cuenta;
     }
     
@@ -71,7 +65,7 @@ public class Venta {
     
     public String toString(){
         
-        return String.format("%s %s %.2f", comprador.getNombre(), getHoraFecha(), getVentaTotal() );
+        return String.format("%s %s $%.2f", comprador.getNombre(), getHoraFecha(), ventaTotal );
     }
     
 }
