@@ -11,6 +11,8 @@ public class Venta {
     private float ventaTotal;
     private Cliente comprador;
     private String horaFecha;
+    private float[] precios;
+    private int[] numeroArticulos;
     
     public Venta( Cliente cliente ){
         
@@ -36,36 +38,39 @@ public class Venta {
         this.comprador = comprador;
     }
     
-    public float[] setPrecios( float ... precios ){
+    public void setPrecios( float ... aPrecios ){
         
-        return precios;
+        precios = aPrecios;
     }
     
-    public int[] getNumeroProductos( int ... numeroProductos ){
+    public void getNumeroProductos( int ... numeroProductos ){
         
-        return numeroProductos;
+        numeroArticulos = numeroProductos;
+    }
+    
+    public void setVentaTotal( float venta ){
+        
+        venta = ventaTotal;
     }
     
     public float getVentaTotal(){
         
-        float [] precios = setPrecios();
-        int [] numeroProductos = getNumeroProductos();
         float cuenta = 0f;
-        for( int i = 0; i < setPrecios().length; i++ ){
+        for( int i = 0; i < precios.length; i++ ){
             
-            cuenta += precios[ i ] * numeroProductos[ i ];
+            cuenta += precios[ i ] * numeroArticulos[ i ];
         }
         
         comprador.setComprasRealizadas( comprador.getComprasRealizadas() + 1 );
         ventaTotal = cuenta;
-        return cuenta;
+        return ventaTotal;
     }
     
     
     
     public String toString(){
         
-        return String.format("%s %s $%.2f", comprador.getNombre(), getHoraFecha(), ventaTotal );
+        return String.format("%15s %s $%,10.2f", comprador.getNombre(), getHoraFecha(), ventaTotal );
     }
     
 }

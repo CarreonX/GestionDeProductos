@@ -29,8 +29,6 @@ public class Producto {
         this.marca = marca;
     }
     
-    
-    
     public String getCodigo() {
         return codigo;
     }

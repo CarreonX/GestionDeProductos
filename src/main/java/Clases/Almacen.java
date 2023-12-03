@@ -4,11 +4,11 @@ package Clases;
 
 public class Almacen {
     
-    private int[] productos;
-    private boolean esVacio;
-    private boolean esLleno;
-    private int limiteDeExistencias;
-    private int contadorDeExistencias;
+    private static int[] productos;
+    private static boolean esVacio;
+    private static boolean esLleno;
+    private static int limiteDeExistencias;
+    private static int contadorDeExistencias;
 
     public Almacen() {
         
@@ -24,7 +24,7 @@ public class Almacen {
     }
     
     
-    public boolean esVacio() {
+    public static boolean esVacio() {
         
         int contador = 0;
         for( int cantidad : productos ){
@@ -42,7 +42,7 @@ public class Almacen {
         }
     }
 
-    public boolean esLleno() {
+    public static boolean esLleno() {
         
         int contador = 0;
         for( int cantidad : productos ){
@@ -58,7 +58,7 @@ public class Almacen {
         }
     }
     
-    public void agregarUnProducto( Producto producto ){
+    public static void agregarUnProducto( Producto producto ){
         
         if(  ( contadorDeExistencias + producto.getCantidadDePiezas() ) <= limiteDeExistencias ){
             
@@ -92,7 +92,7 @@ public class Almacen {
         }
     }
     
-    public void venderUnProducto( int cantidad, String categoria ){
+    public static void venderUnProducto( int cantidad, String categoria ){
         
         switch( categoria ){
                 
@@ -124,7 +124,7 @@ public class Almacen {
         contadorDeExistencias -= cantidad;
     }
     
-    public String verAlmacen(){
+    public static String verAlmacen(){
         
         return String.format("Cantidades en almacen\nIndividual: %d\nDoble: %d\nQueen Size: %d\nKing Size: %d\nPresidential king size: %d\n",
                 productos[ 0 ], productos[ 1 ], productos[ 2 ], productos[ 3 ], productos[ 4 ] );
