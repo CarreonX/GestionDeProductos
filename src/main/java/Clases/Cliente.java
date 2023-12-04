@@ -2,14 +2,16 @@
 package Clases;
 
 
-public class Cliente {
+public class Cliente extends Usuario {
     
     private String nombre;
     private String apellidos;
     private String direccion;
     private int comprasRealizadas;
 
-    public Cliente(String nombre, String apellidos, String direccion ) {
+    public Cliente( String nombreU, String pass, String nombre, String apellidos, String direccion ) {
+        
+        super( nombreU, pass );
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.direccion = direccion;

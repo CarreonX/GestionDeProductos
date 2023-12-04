@@ -20,9 +20,9 @@ public class Pruebas {
         Almacen.agregarUnProducto( p3 );
         Almacen.agregarUnProducto(p4 );
         Almacen.agregarUnProducto(p0 );
-        Cliente c1 = new Cliente( "Pedro", "Perez", "calle norte");
-        Cliente c2 = new Cliente( "Teodoro", "robles", "calle sur" );
-        Cliente c3 = new Cliente( "Pablo", "Mendez", "Calsada juarez" );
+        Cliente c1 = new Cliente( "pedrito", "234", "Pedro", "Perez", "calle norte");
+        Cliente c2 = new Cliente( "Teo", "123", "Teodoro", "robles", "calle sur" );
+        Cliente c3 = new Cliente( "pablito", "123", "Pablo", "Mendez", "Calsada juarez" );
         Venta v1 = new Venta( c1 );
         Venta v2 = new Venta( c2 );
         Venta v3 = new Venta( c3 );
