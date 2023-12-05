@@ -5,16 +5,32 @@
 package Formularios;
 
 import Clases.*;
+import java.util.Calendar;
+import java.util.List;
 
 public class frmAdministrador extends javax.swing.JFrame {
-
-    /**
-     * Creates new form frmAdministrador
-     */
+    
+    Lista listaProductos;
+    
+    public frmAdministrador( Lista lista ){
+        
+        initComponents();
+        setLocationRelativeTo( null );
+        Calendar fechaHora = Calendar.getInstance();
+        lblBienvenida.setText( lblBienvenida.getText() + "  Administrador  " + Usuarios.usuarioActual.getNombreUsuario() );
+        lblFechaHora.setText( String.format( "%tr, %1$TA, %1$TB %1$Td, %1$TY", fechaHora, fechaHora ) );
+        listaProductos = lista;
+        
+    }
+    
     public frmAdministrador() {
         initComponents();
         setLocationRelativeTo( null );
+        Calendar fechaHora = Calendar.getInstance();
         lblBienvenida.setText( lblBienvenida.getText() + "  Administrador  " + Usuarios.usuarioActual.getNombreUsuario() );
+        lblFechaHora.setText( String.format( "%tr, %1$TA, %1$TB %1$Td, %1$TY", fechaHora, fechaHora ) );
+        Almacen.inicializarLista();
+        listaProductos = Almacen.listaProductos;
     }
 
     /**
@@ -27,31 +43,104 @@ public class frmAdministrador extends javax.swing.JFrame {
     private void initComponents() {
 
         lblBienvenida = new javax.swing.JLabel();
+        btnVerAdministradores = new javax.swing.JButton();
+        btnVerClientes = new javax.swing.JButton();
+        btnVerAlmacen = new javax.swing.JButton();
+        btnVerVentas = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        lblFechaHora = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblBienvenida.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblBienvenida.setText("Bienvenida (o) :");
 
+        btnVerAdministradores.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnVerAdministradores.setText("Ver Administradores");
+
+        btnVerClientes.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnVerClientes.setText("Ver clientes");
+        btnVerClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerClientesActionPerformed(evt);
+            }
+        });
+
+        btnVerAlmacen.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnVerAlmacen.setText("Ver almacen");
+        btnVerAlmacen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerAlmacenActionPerformed(evt);
+            }
+        });
+
+        btnVerVentas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnVerVentas.setText("Ver todas las ventas");
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/225e80aa4d92f993b7f82e9ba19fd0e0.jpg"))); // NOI18N
+        jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
+        lblFechaHora.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addComponent(lblBienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(308, Short.MAX_VALUE))
+                .addGap(113, 113, 113)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblBienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnVerVentas)
+                            .addComponent(btnVerAlmacen)
+                            .addComponent(btnVerClientes)
+                            .addComponent(btnVerAdministradores))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblFechaHora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(63, 63, 63))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(131, 131, 131)
+                .addGap(94, 94, 94)
                 .addComponent(lblBienvenida)
-                .addContainerGap(468, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(lblFechaHora, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnVerAlmacen)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnVerAdministradores)
+                        .addGap(65, 65, 65)
+                        .addComponent(btnVerClientes)
+                        .addGap(75, 75, 75)
+                        .addComponent(btnVerVentas)
+                        .addGap(59, 59, 59))
+                    .addComponent(jLabel1))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnVerClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerClientesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerClientesActionPerformed
+
+    private void btnVerAlmacenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerAlmacenActionPerformed
+        // TODO add your handling code here:
+        frmAlmacen a = new frmAlmacen( listaProductos );
+        a.setVisible( true );
+        this.dispose();
+    }//GEN-LAST:event_btnVerAlmacenActionPerformed
 
     /**
      * @param args the command line arguments
@@ -89,6 +178,13 @@ public class frmAdministrador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnVerAdministradores;
+    private javax.swing.JButton btnVerAlmacen;
+    private javax.swing.JButton btnVerClientes;
+    private javax.swing.JButton btnVerVentas;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lblBienvenida;
+    private javax.swing.JLabel lblFechaHora;
     // End of variables declaration//GEN-END:variables
 }

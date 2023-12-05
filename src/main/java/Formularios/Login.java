@@ -47,7 +47,7 @@ public class Login extends javax.swing.JFrame {
         jLabel2.setText("Password: ");
 
         btnIniciarSecion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/LogInICON.png"))); // NOI18N
-        btnIniciarSecion.setText("Iniciar seción");
+        btnIniciarSecion.setText("Iniciar sesión");
         btnIniciarSecion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIniciarSecionActionPerformed(evt);
