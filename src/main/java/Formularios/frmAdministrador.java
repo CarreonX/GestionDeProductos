@@ -32,7 +32,7 @@ public class frmAdministrador extends javax.swing.JFrame {
         Almacen.inicializarLista();
         listaProductos = Almacen.listaProductos;
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,6 +49,7 @@ public class frmAdministrador extends javax.swing.JFrame {
         btnVerVentas = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         lblFechaHora = new javax.swing.JLabel();
+        btnMenuPrincipal = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -58,6 +59,11 @@ public class frmAdministrador extends javax.swing.JFrame {
 
         btnVerAdministradores.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnVerAdministradores.setText("Ver Administradores");
+        btnVerAdministradores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerAdministradoresActionPerformed(evt);
+            }
+        });
 
         btnVerClientes.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnVerClientes.setText("Ver clientes");
@@ -82,6 +88,13 @@ public class frmAdministrador extends javax.swing.JFrame {
         jLabel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         lblFechaHora.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        btnMenuPrincipal.setText("Menu Principal");
+        btnMenuPrincipal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuPrincipalActionPerformed(evt);
+            }
+        });
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -89,43 +102,44 @@ public class frmAdministrador extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(113, 113, 113)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnMenuPrincipal)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblBienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnVerVentas)
                             .addComponent(btnVerAlmacen)
+                            .addComponent(btnVerVentas)
                             .addComponent(btnVerClientes)
                             .addComponent(btnVerAdministradores))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblFechaHora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(63, 63, 63))))
+                        .addGap(52, 52, 52)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblFechaHora, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)))
+                    .addComponent(lblBienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 51, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(94, 94, 94)
+                .addGap(19, 19, 19)
+                .addComponent(btnMenuPrincipal)
+                .addGap(28, 28, 28)
                 .addComponent(lblBienvenida)
+                .addGap(34, 34, 34)
+                .addComponent(lblFechaHora, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(lblFechaHora, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnVerAlmacen)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(76, 76, 76)
                         .addComponent(btnVerAdministradores)
                         .addGap(65, 65, 65)
                         .addComponent(btnVerClientes)
                         .addGap(75, 75, 75)
-                        .addComponent(btnVerVentas)
-                        .addGap(59, 59, 59))
+                        .addComponent(btnVerVentas))
                     .addComponent(jLabel1))
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pack();
@@ -141,6 +155,20 @@ public class frmAdministrador extends javax.swing.JFrame {
         a.setVisible( true );
         this.dispose();
     }//GEN-LAST:event_btnVerAlmacenActionPerformed
+
+    private void btnVerAdministradoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerAdministradoresActionPerformed
+        // TODO add your handling code here:
+        frmAdministradores a = new frmAdministradores();
+        a.setVisible( true );
+        this.dispose();
+    }//GEN-LAST:event_btnVerAdministradoresActionPerformed
+
+    private void btnMenuPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuPrincipalActionPerformed
+        // TODO add your handling code here:
+        Login a = new Login();
+        a.setVisible( true );
+        this.dispose();
+    }//GEN-LAST:event_btnMenuPrincipalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,6 +206,7 @@ public class frmAdministrador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnMenuPrincipal;
     private javax.swing.JButton btnVerAdministradores;
     private javax.swing.JButton btnVerAlmacen;
     private javax.swing.JButton btnVerClientes;
